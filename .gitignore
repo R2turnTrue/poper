@@ -1,6 +1,16 @@
 Airplane-API
 Airplane-Server
 
+Airplane-API/build
+Airplane-Server/build
+
+Airplane-API/.gradle
+Airplane-Server/.gradle
+
+Airplane-API/.idea
+Airplane-Server/.idea
+
+.idea
 last-tuinity
 build/
 .gradle/
