@@ -1,0 +1,19 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: TreeKR <johanbag290@gmail.com>
+Date: Mon, 27 Sep 2021 13:28:26 +0900
+Subject: [PATCH] Rebrand #2
+
+
+diff --git a/src/main/java/org/bukkit/craftbukkit/util/Versioning.java b/src/main/java/org/bukkit/craftbukkit/util/Versioning.java
+index ba71c0d4a1db3d1ac2e834a8adc1e6c3313fa192..ec185e164316d29ff14a12a4ecadd0eab39c0e0d 100644
+--- a/src/main/java/org/bukkit/craftbukkit/util/Versioning.java
++++ b/src/main/java/org/bukkit/craftbukkit/util/Versioning.java
+@@ -11,7 +11,7 @@ public final class Versioning {
+     public static String getBukkitVersion() {
+         String result = "Unknown-Version";
+ 
+-        InputStream stream = Bukkit.class.getClassLoader().getResourceAsStream("META-INF/maven/xyz.namutree0345/poper-api/pom.properties"); // Tuinity // Airplane // Poper
++        InputStream stream = Bukkit.class.getClassLoader().getResourceAsStream("META-INF/maven/xyz.r2turntrue/poper-api/pom.properties"); // Tuinity // Airplane // Poper
+         Properties properties = new Properties();
+ 
+         if (stream != null) {
