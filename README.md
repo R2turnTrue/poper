@@ -1,40 +1,18 @@
 <!-- Variables -->
-[home]: https://airplane.gg
-[blog]: https://blog.airplane.gg
-[downloads]: https://dl.airplane.gg
-[about]: https://blog.airplane.gg/about/
-[discord]: https://discord.gg/63dDSReB7j
-[purity]: https://www.purityvanilla.com
-[patreon]: https://www.patreon.com/airplane
-[fork]: https://github.com/TECHNOVE/MyAirplaneFork
-[wiki]: https://github.com/TECHNOVE/Airplane/wiki
+[discord]: https://discord.gg/n7BExB4Dk6
 
-# Airplane
+# Poper
 A stable, optimized, well supported 1.17 Paper fork.
 
-[Homepage][home] - [Downloads][downloads] - [Blog][blog] - [Discord][discord] - [airplane.yml][wiki]
+[Discord][discord]
 
 ## Features
 
-- **30% faster hoppers** over both Tuinity & Paper
-- **Improved entity performance** from a reduction in ticking entity behavior based on how far away they are from the player.
-- **Reduced GC times & frequency** from removing useless allocations, which also improves CPU performance.
-- **Fast raytracing** which improves performance of any entity which utilizes line of sight, mainly Villagers.
-- **Built-in profiler** which has 0 performance hit and easy to read metrics for both server owners and developers.
-- Faster crafting, reduction in uselessly loaded chunks, faster entity ticking, faster block ticking, faster bat spawning, and more!
-- Plugin compatibility with Paper & Tuinity plugins.
-- [Read more about our features.][about]
+- More developer API! (Ex. EntityDespawnEvent)
+- Async features!
 
 ## Downloads
-The latest JAR file can be downloaded from [the downloads page][downloads]. You can also clone this repository and build it yourself.
-
-If you are interested in making a fork of Airplane, check out this template [here][fork]!
-
-## Patreon
-
-Thanks to all our Patrons! It is your help that keeps this project running. Check out our Private Quarters & First Class Patrons:
-
-[![Purity Vanilla](https://i.imgur.com/SC88aEg.png)][purity]
+The latest JAR file can be downloaded from the download page(Under construction). You can also clone this repository and build it yourself.
 
 ## Building
 
