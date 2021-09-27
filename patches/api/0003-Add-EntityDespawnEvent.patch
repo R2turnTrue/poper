@@ -1,0 +1,37 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: TreeKR <johanbag290@gmail.com>
+Date: Mon, 27 Sep 2021 13:33:30 +0900
+Subject: [PATCH] Add EntityDespawnEvent
+
+
+diff --git a/src/main/java/xyz/r2turntrue/poper/event/EntityDespawnEvent.java b/src/main/java/xyz/r2turntrue/poper/event/EntityDespawnEvent.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..4464c63207f0ce67be8783e421d37508d1bd6595
+--- /dev/null
++++ b/src/main/java/xyz/r2turntrue/poper/event/EntityDespawnEvent.java
+@@ -0,0 +1,24 @@
++package xyz.r2turntrue.poper.event;
++
++import org.bukkit.entity.Entity;
++import org.bukkit.event.HandlerList;
++import org.bukkit.event.entity.EntityEvent;
++import org.jetbrains.annotations.NotNull;
++
++public class EntityDespawnEvent extends EntityEvent {
++
++    private static final HandlerList handlers = new HandlerList();
++
++    public EntityDespawnEvent(@NotNull Entity what) {
++        super(what);
++    }
++
++    @Override
++    public @NotNull HandlerList getHandlers() {
++        return handlers;
++    }
++
++    public static HandlerList getHandlerList() {
++        return handlers;
++    }
++}
+\ No newline at end of file

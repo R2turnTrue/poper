@@ -1,0 +1,22 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: TreeKR <johanbag290@gmail.com>
+Date: Mon, 27 Sep 2021 13:40:18 +0900
+Subject: [PATCH] Add JavaDoc
+
+
+diff --git a/src/main/java/xyz/r2turntrue/poper/event/EntityDespawnEvent.java b/src/main/java/xyz/r2turntrue/poper/event/EntityDespawnEvent.java
+index 4464c63207f0ce67be8783e421d37508d1bd6595..48ae56dab511fe39d0359daeb188098598e5ae82 100644
+--- a/src/main/java/xyz/r2turntrue/poper/event/EntityDespawnEvent.java
++++ b/src/main/java/xyz/r2turntrue/poper/event/EntityDespawnEvent.java
+@@ -5,6 +5,11 @@ import org.bukkit.event.HandlerList;
+ import org.bukkit.event.entity.EntityEvent;
+ import org.jetbrains.annotations.NotNull;
+ 
++/**
++ * This event is called when a {@link org.bukkit.entity.Entity} is removed from
++ * the world because it has existed for 5 minutes or player is go away from the despawn range.
++ * <p>
++ */
+ public class EntityDespawnEvent extends EntityEvent {
+ 
+     private static final HandlerList handlers = new HandlerList();
