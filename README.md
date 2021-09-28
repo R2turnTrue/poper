@@ -9,7 +9,7 @@ A stable, optimized, well supported 1.17 Paper fork.
 ## Features
 
 - More developer API! (Ex. EntityDespawnEvent)
-- Async features!
+- ~~Async features!~~ (Put on hold)
 
 ## Downloads
 The latest JAR file can be downloaded from the download page(Under construction). You can also clone this repository and build it yourself.
