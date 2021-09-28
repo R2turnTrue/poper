@@ -1,6 +1,16 @@
-Airplane-API
-Airplane-Server
+Poper-API
+Poper-Server
 
+Poper-API/build
+Poper-Server/build
+
+Poper-API/.gradle
+Poper-Server/.gradle
+
+Poper-API/.idea
+Poper-Server/.idea
+
+.idea
 last-tuinity
 build/
 .gradle/

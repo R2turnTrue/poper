@@ -5,6 +5,6 @@ pluginManagement {
     }
 }
 
-rootProject.name = "Airplane"
+rootProject.name = "Poper"
 
-include("Airplane-API", "Airplane-Server")
+include("Poper-API", "Poper-Server")
