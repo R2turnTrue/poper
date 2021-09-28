@@ -1,0 +1,26 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: TreeKR <johanbag290@gmail.com>
+Date: Wed, 29 Sep 2021 00:35:07 +0900
+Subject: [PATCH] Publishing
+
+
+diff --git a/build.gradle.kts b/build.gradle.kts
+index 02f80c9a34a23c2285a1e05b41f53b4bafc28c5a..9ddfed305e895131f380a2119e9cf19657f98887 100644
+--- a/build.gradle.kts
++++ b/build.gradle.kts
+@@ -68,6 +68,15 @@ configure<PublishingExtension> {
+         artifactId = project.name.toLowerCase(Locale.ENGLISH)
+         from(components["java"])
+     }
++    repositories {
++        maven {
++            credentials {
++                username = project.findProperty("nexusUsername") as String? ?: System.getenv("USERNAME")
++                password = project.findProperty("nexusPassword") as String? ?: System.getenv("TOKEN")
++            }
++            url = uri("https://repo.projecttl.net/repository/maven-snapshots/")
++        }
++    }
+ }
+ 
+ val generateApiVersioningFile by tasks.registering {
