@@ -1,0 +1,117 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: TreeKR <johanbag290@gmail.com>
+Date: Wed, 29 Sep 2021 00:01:35 +0900
+Subject: [PATCH] Rebrand
+
+
+diff --git a/build.gradle.kts b/build.gradle.kts
+index b3687f632bbf06c933a6ef04dc2236ccf3c030b8..998ad292187cb3d949a877c37f6dae090e0a0092 100644
+--- a/build.gradle.kts
++++ b/build.gradle.kts
+@@ -29,8 +29,8 @@ repositories {
+ }
+ 
+ dependencies {
+-    implementation(project(":Paper-API"))
+-    implementation(project(":Paper-MojangAPI"))
++    implementation(project(":Poper-API")) // Poper
++    implementation("io.papermc.paper:paper-mojangapi:1.17.1-R0.1-SNAPSHOT") // Poper
+     // Paper start
+     implementation("org.jline:jline-terminal-jansi:3.12.1")
+     implementation("net.minecrell:terminalconsoleappender:1.2.0")
+@@ -82,7 +82,7 @@ tasks.jar {
+         attributes(
+             "Main-Class" to "org.bukkit.craftbukkit.Main",
+             "Implementation-Title" to "CraftBukkit",
+-            "Implementation-Version" to "git-Paper-$implementationVersion",
++            "Implementation-Version" to "git-Poper-$implementationVersion", // Poper
+             "Implementation-Vendor" to date, // Paper
+             "Specification-Title" to "Bukkit",
+             "Specification-Version" to project.version,
+@@ -147,7 +147,7 @@ tasks.shadowJar {
+ 
+     // Needed for Paperclip's install to maven local feature
+     from(generatePom) {
+-        into("META-INF/maven/io.papermc.paper/paper")
++        into("META-INF/maven/xyz.r2turntrue.poper/poper") // Poper
+         rename { "pom.xml" }
+     }
+ 
+diff --git a/src/main/java/com/destroystokyo/paper/PaperVersionFetcher.java b/src/main/java/com/destroystokyo/paper/PaperVersionFetcher.java
+index 580bae0d414d371a07a6bfeefc41fdd989dc0083..f36c451c4843ad213d75e41ab8622e4e386cd46c 100644
+--- a/src/main/java/com/destroystokyo/paper/PaperVersionFetcher.java
++++ b/src/main/java/com/destroystokyo/paper/PaperVersionFetcher.java
+@@ -43,7 +43,7 @@ public class PaperVersionFetcher implements VersionFetcher {
+                 String result = matcher.group();
+                 mcVer = result.substring(0, result.length() - 2); // strip 'R' anchor and trailing '-'
+             } else {
+-                org.bukkit.Bukkit.getLogger().warning("Unable to match version to pattern! Report to PaperMC!");
++                org.bukkit.Bukkit.getLogger().warning("Unable to match version to pattern! Report to Poper!"); // Poper
+                 org.bukkit.Bukkit.getLogger().warning("Pattern: " + VER_PATTERN.toString());
+                 org.bukkit.Bukkit.getLogger().warning("Version: " + org.bukkit.Bukkit.getBukkitVersion());
+             }
+diff --git a/src/main/java/com/destroystokyo/paper/console/PaperConsole.java b/src/main/java/com/destroystokyo/paper/console/PaperConsole.java
+index e0b1f0671d16ddddcb6725acd25a1d1d69e42701..2f3b438f3b7cd19689e277140a66c6c3a57ad1c6 100644
+--- a/src/main/java/com/destroystokyo/paper/console/PaperConsole.java
++++ b/src/main/java/com/destroystokyo/paper/console/PaperConsole.java
+@@ -17,7 +17,7 @@ public final class PaperConsole extends SimpleTerminalConsole {
+     @Override
+     protected LineReader buildReader(LineReaderBuilder builder) {
+         builder
+-                .appName("Paper")
++                .appName("Poper") // Poper
+                 .variable(LineReader.HISTORY_FILE, java.nio.file.Paths.get(".console_history"))
+                 .completer(new ConsoleCommandCompleter(this.server))
+                 .option(LineReader.Option.COMPLETE_IN_WORD, true);
+diff --git a/src/main/java/net/minecraft/server/MinecraftServer.java b/src/main/java/net/minecraft/server/MinecraftServer.java
+index 1d7c26354eee1dff5e66b6234d408ed8f800415c..f70b325edb9138ee72b2891ea4a9dea6ef902999 100644
+--- a/src/main/java/net/minecraft/server/MinecraftServer.java
++++ b/src/main/java/net/minecraft/server/MinecraftServer.java
+@@ -1721,7 +1721,7 @@ public abstract class MinecraftServer extends ReentrantBlockableEventLoop<TickTa
+ 
+     @DontObfuscate
+     public String getServerModName() {
+-        return "Paper"; // Paper - Paper > // Spigot - Spigot > // CraftBukkit - cb > vanilla!
++        return "Poper"; // Poper - Poper > // Paper - Paper > // Spigot - Spigot > // CraftBukkit - cb > vanilla!
+     }
+ 
+     public SystemReport fillSystemReport(SystemReport details) {
+diff --git a/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java b/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
+index 1bf19965d12514dee34545235bfbadc0b74ddc8b..389cdccea51e4a4dc36f49bcbbe4ecede546f4b5 100644
+--- a/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
++++ b/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
+@@ -281,7 +281,7 @@ public class DedicatedServer extends MinecraftServer implements ServerInterface
+             DedicatedServer.LOGGER.warn("**** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!");
+             DedicatedServer.LOGGER.warn("The server will make no attempt to authenticate usernames. Beware.");
+             // Spigot start
+-            if (org.spigotmc.SpigotConfig.bungee) {
++            if (com.destroystokyo.paper.PaperConfig.isProxyOnlineMode()) { // Poper
+                 DedicatedServer.LOGGER.warn("Whilst this makes it possible to use BungeeCord, unless access to your server is properly restricted, it also opens up the ability for hackers to connect with any username they choose.");
+                 DedicatedServer.LOGGER.warn("Please see http://www.spigotmc.org/wiki/firewall-guide/ for further information.");
+             } else {
+diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
+index c1fc309411c277f7b7450686543a6a7a7fe2fdb1..bb2a724250c9bb7392ed520fc8e9f6c27248ca45 100644
+--- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
++++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
+@@ -246,7 +246,7 @@ import javax.annotation.Nullable; // Paper
+ import javax.annotation.Nonnull; // Paper
+ 
+ public final class CraftServer implements Server {
+-    private final String serverName = "Paper"; // Paper
++    private final String serverName = "Poper"; // Paper // Poper
+     private final String serverVersion;
+     private final String bukkitVersion = Versioning.getBukkitVersion();
+     private final Logger logger = Logger.getLogger("Minecraft");
+diff --git a/src/main/java/org/bukkit/craftbukkit/util/Versioning.java b/src/main/java/org/bukkit/craftbukkit/util/Versioning.java
+index 774556a62eb240da42e84db4502e2ed43495be17..e9fd11112963e53c00583940dd6b41c8a7adf4f1 100644
+--- a/src/main/java/org/bukkit/craftbukkit/util/Versioning.java
++++ b/src/main/java/org/bukkit/craftbukkit/util/Versioning.java
+@@ -11,7 +11,7 @@ public final class Versioning {
+     public static String getBukkitVersion() {
+         String result = "Unknown-Version";
+ 
+-        InputStream stream = Bukkit.class.getClassLoader().getResourceAsStream("META-INF/maven/io.papermc.paper/paper-api/pom.properties");
++        InputStream stream = Bukkit.class.getClassLoader().getResourceAsStream("META-INF/maven/xyz.r2turntrue.poper/poper-api/pom.properties");
+         Properties properties = new Properties();
+ 
+         if (stream != null) {
