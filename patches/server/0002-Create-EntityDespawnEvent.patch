@@ -1,0 +1,59 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: TreeKR <johanbag290@gmail.com>
+Date: Wed, 29 Sep 2021 00:11:14 +0900
+Subject: [PATCH] Create EntityDespawnEvent
+
+
+diff --git a/src/main/java/net/minecraft/world/entity/Mob.java b/src/main/java/net/minecraft/world/entity/Mob.java
+index 8a864238e154e2131834d013652746b7e7a78c97..56b2323e44330ec9d5be886f69c20145bddd5355 100644
+--- a/src/main/java/net/minecraft/world/entity/Mob.java
++++ b/src/main/java/net/minecraft/world/entity/Mob.java
+@@ -802,14 +802,20 @@ public abstract class Mob extends LivingEntity {
+                 int j = i * i;
+ 
+                 if (d0 > (double) level.paperConfig.hardDespawnDistance) { // CraftBukkit - remove isTypeNotPersistent() check // Paper - custom despawn distances
+-                    this.discard();
++                    // Poper start
++                    if(!CraftEventFactory.callEntityDespawnEvent(this).isCancelled())
++                        this.discard();
++                    // Poper end
+                 }
+ 
+                 int k = this.getType().getCategory().getNoDespawnDistance();
+                 int l = k * k;
+ 
+                 if (this.noActionTime > 600 && this.random.nextInt(800) == 0 && d0 > level.paperConfig.softDespawnDistance) { // CraftBukkit - remove isTypeNotPersistent() check // Paper - custom despawn distances
+-                    this.discard();
++                    // Poper start
++                    if(!CraftEventFactory.callEntityDespawnEvent(this).isCancelled())
++                        this.discard();
++                    // Poper end
+                 } else if (d0 < level.paperConfig.softDespawnDistance) { // Paper - custom despawn distances
+                     this.noActionTime = 0;
+                 }
+diff --git a/src/main/java/org/bukkit/craftbukkit/event/CraftEventFactory.java b/src/main/java/org/bukkit/craftbukkit/event/CraftEventFactory.java
+index 4b06275f2939a351a965f51177a01b3124e2513e..5452ea43a9469c06b820c33b165112bdbf035b23 100644
+--- a/src/main/java/org/bukkit/craftbukkit/event/CraftEventFactory.java
++++ b/src/main/java/org/bukkit/craftbukkit/event/CraftEventFactory.java
+@@ -220,6 +220,7 @@ import org.bukkit.inventory.meta.BookMeta;
+ import org.bukkit.potion.PotionEffect;
+ 
+ import org.bukkit.event.entity.SpawnerSpawnEvent; // Spigot
++import xyz.r2turntrue.poper.event.EntityDespawnEvent;
+ 
+ public class CraftEventFactory {
+     public static final DamageSource MELTING = CraftDamageSource.copyOf(DamageSource.ON_FIRE);
+@@ -294,6 +295,13 @@ public class CraftEventFactory {
+         Bukkit.getPluginManager().callEvent(entityEnterLoveModeEvent);
+         return entityEnterLoveModeEvent;
+     }
++    // Poper start
++    public static EntityDespawnEvent callEntityDespawnEvent(net.minecraft.world.entity.Entity entity) {
++        EntityDespawnEvent e = new EntityDespawnEvent(entity.getBukkitEntity());
++        Bukkit.getPluginManager().callEvent(e);
++        return e;
++    }
++    // Poper end
+ 
+     /**
+      * Player Harvest Block Event
